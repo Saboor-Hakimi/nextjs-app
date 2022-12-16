@@ -1,8 +1,27 @@
 import Nav from "../components/nav";
 
 import Footer from "../components/footer";
+import { useState } from "react";
+
+import axios from "axios";
 
 export default function About() {
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+  const [auth, setAuth] = useState({ auth: false, token: null });
+
+  async function doLogin() {
+    axios
+      .post(backendUrl + "/api/auth/local", {
+        identifier: "rypuxi@mailinator.com",
+        password: "Pa$$w0rd!",
+      })
+      .then((response) => {
+        setAuth({ auth: true, token: response.data.jwt });
+        localStorage.setItem("token", response.data.jwt);
+      });
+  }
+
   // scroll smooth
   const scrollSmooth = () => {
     window.scrollTo({
@@ -44,8 +63,9 @@ export default function About() {
         </div>
         <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-center lg:py-16 lg:px-8">
           {/* button to login the user */}
-          <button className="btn btn-primary m-2">Login</button>
-          <button className="btn btn-secondary m-2">SignUp</button>
+          <button className="btn btn-primary m-2 btn-wide" onClick={doLogin}>
+            Login
+          </button>
         </div>
       </div>
 

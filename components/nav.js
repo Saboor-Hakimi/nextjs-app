@@ -13,11 +13,11 @@ export default function Nav() {
 
   const [scroll, setScroll] = useState(0);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScroll(window.scrollY);
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     setScroll(window.scrollY);
+  //   });
+  // }, []);
 
   const [show, setShow] = useState(true);
 
@@ -99,17 +99,20 @@ export default function Nav() {
 
           {/* navigation bar elements aligned to the right side of the screen */}
           <div>
-            <button
-              className="btn inline-block text-md px-4 py-2 leading-none rounded text-white  hover:text-gray-800 hover:bg-white mt-4 lg:mt-0"
-              onClick={doLogin}
-            >
-              <Link href="/login">Login</Link>
-            </button>
+            <Link href="/login">
+              <button
+                className="btn inline-block text-md px-4 py-2 leading-none rounded text-white  hover:text-gray-800 hover:bg-white mt-4 lg:mt-0"
+                onClick={doLogin}
+              >
+                Login
+              </button>
+            </Link>
             <div className="inline m-1"></div>
-
-            <button className="btn inline-block text-md px-4 py-2 leading-none rounded text-white  hover:text-gray-800 hover:bg-white mt-4 lg:mt-0">
-              <Link href="/signup">Register</Link>
-            </button>
+            <Link href="/signup">
+              <button className="btn inline-block text-md px-4 py-2 leading-none rounded text-white  hover:text-gray-800 hover:bg-white mt-4 lg:mt-0">
+                Register
+              </button>
+            </Link>
           </div>
         </div>
       </nav>
